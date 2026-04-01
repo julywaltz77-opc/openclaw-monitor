@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = 'force-dynamic';
 import { useMysqlSnapshots, useAutoRefresh } from "../lib/convex";
 import MysqlTable from "../components/MysqlTable";
 import Loading from "../components/Loading";

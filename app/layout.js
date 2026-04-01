@@ -1,6 +1,5 @@
 import { ConvexClientProvider } from "./lib/convex";
 import Layout from "./components/Layout";
-import "./globals.css";
 
 export const metadata = {
   title: "OpenClaw Monitor",

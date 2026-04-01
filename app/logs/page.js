@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = 'force-dynamic';
 import { useTaskLogs, useAutoRefresh } from "../lib/convex";
 import LogList from "../components/LogList";
 import Loading from "../components/Loading";

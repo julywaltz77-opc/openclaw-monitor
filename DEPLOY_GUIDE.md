@@ -13,16 +13,32 @@ Convex 后端已部署完成，包含所有数据模型和接口：
 - 上报密钥：671689d22a4b432c41543e3e3c87a6dd
 - 已配置环境变量：UPLOAD_SECRET = 671689d22a4b432c41543e3e3c87a6dd
 
-## 2. 前端部署到 Vercel
-### 步骤1：关联 GitHub 仓库
-将项目推送到 GitHub 后，在 Vercel 导入仓库
+## 2. 前端部署到 Vercel（已完成关联）
+### 步骤1：推送代码到 GitHub
+```bash
+cd /Users/julywaltz-opc/.openclaw/projects/openclaw-monitor
+git remote add origin https://github.com/[你的GitHub用户名]/openclaw-monitor.git
+git push -u origin main
+```
+推送完成后 Vercel 会自动触发部署。
 
 ### 步骤2：配置环境变量
 在 Vercel 项目设置中添加环境变量：
-- `CONVEX_URL`: 从 Convex 控制台获取的 URL
+- `NEXT_PUBLIC_CONVEX_URL`: https://outstanding-wren-279.convex.cloud
 
-### 步骤3：部署
-点击部署，Vercel 会自动构建并部署前端
+### 步骤3：配置自定义域名（使用 julywaltz77.work）
+1. **域名解析配置**：
+在你的域名解析商添加如下记录：
+- 类型：A
+- 主机记录：@（如果用主域名）或 monitor（如果用子域名 monitor.julywaltz77.work）
+- 记录值：76.76.21.21
+- TTL：10分钟
+
+2. **Vercel 控制台添加域名**：
+在 Vercel 项目的「Domains」设置中添加 `julywaltz77.work`（或子域名），Vercel 会自动验证解析并配置 SSL 证书。
+
+### 步骤4：访问部署后的平台
+域名验证通过后，即可通过 `https://julywaltz77.work` 访问 OpenClaw 监控平台。
 
 ## 3. 本地采集脚本配置
 ### 步骤1：解压脚本
