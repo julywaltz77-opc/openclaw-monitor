@@ -2,14 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "env": {
-    "CONVEX_URL": "@convex-url"
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
+  "installCommand": "npm install"
 }
