@@ -1,6 +1,6 @@
 "use client";
 import { ConvexProvider, ConvexReactClient, useQuery } from "convex/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
 
@@ -8,30 +8,56 @@ export function ConvexClientProvider({ children }) {
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
 }
 
-export const api = convex.api;
+// 安全获取api，避免服务端渲染时报错
+const getApi = () => {
+  if (typeof window === 'undefined') return null;
+  return convex.api;
+};
+
+export const api = getApi();
 
 // 封装查询函数，支持自动刷新
 export function useAgents(params = {}) {
-  // 服务端预渲染时api.queries可能未初始化，返回undefined避免报错
-  if (!api?.queries) return undefined;
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
   return useQuery(api.queries.getAgents, params);
 }
 
 export function useTasks(params = {}) {
-  // 服务端预渲染时api.queries可能未初始化，返回undefined避免报错
-  if (!api?.queries) return undefined;
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
   return useQuery(api.queries.getTasks, params);
 }
 
 export function useTaskLogs(params = {}) {
-  // 服务端预渲染时api.queries可能未初始化，返回undefined避免报错
-  if (!api?.queries) return undefined;
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
   return useQuery(api.queries.getTaskLogs, params);
 }
 
 export function useMysqlSnapshots(params = {}) {
-  // 服务端预渲染时api.queries可能未初始化，返回undefined避免报错
-  if (!api?.queries) return undefined;
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
   return useQuery(api.queries.getMysqlSnapshots, params);
 }
 
