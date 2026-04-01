@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.pnpm/
+.yarn/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Next.js
+.next/
+out/
+build/
+
+# Convex
+.convex/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Local script
+local-script/config.js
+local-script/logs/
+local-script/local-script.zip
+local-script/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

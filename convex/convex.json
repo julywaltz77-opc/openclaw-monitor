@@ -1,0 +1,15 @@
+{
+  "functions": ".",
+  "generated": "./_generated",
+  "auth": [],
+  "rules": [
+    {
+      "path": "queries/*",
+      "allow": "public"
+    },
+    {
+      "path": "actions/reportData",
+      "allow": "public"
+    }
+  ]
+}
