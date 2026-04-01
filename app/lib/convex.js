@@ -2,7 +2,8 @@
 import { ConvexProvider, ConvexReactClient, useQuery } from "convex/react";
 import { useEffect, useState, useMemo } from "react";
 
-const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL);
+// 硬编码后端地址，避免环境变量问题
+const convex = new ConvexReactClient("https://outstanding-wren-279.convex.cloud");
 
 export function ConvexClientProvider({ children }) {
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
