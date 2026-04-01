@@ -28,11 +28,11 @@ export default function MysqlPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">MySQL 数据快照</h1>
-        <div className="flex items-center space-x-2">
+        <h1 className="text-3xl font-bold gradient-text">MySQL 数据快照</h1>
+        <div className="flex items-center space-x-4">
           {tableNames.length > 0 && (
             <select 
-              className="border rounded px-3 py-1 text-sm"
+              className="select-input"
               value={tableFilter}
               onChange={e => setTableFilter(e.target.value)}
             >
@@ -43,18 +43,20 @@ export default function MysqlPage() {
             </select>
           )}
           {latestUpdate && (
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-slate-400">
               最后更新：{formatDistanceToNow(new Date(latestUpdate), { addSuffix: true, locale: zhCN })}
             </span>
           )}
         </div>
       </div>
 
-      {mysqlSnapshots.length === 0 ? (
-        <EmptyState message="暂无 MySQL 数据" />
-      ) : (
-        <MysqlTable data={allData} />
-      )}
+      <div className="dashboard-card">
+        {mysqlSnapshots.length === 0 ? (
+          <EmptyState message="暂无 MySQL 数据" />
+        ) : (
+          <MysqlTable data={allData} />
+        )}
+      </div>
     </div>
   );
 }

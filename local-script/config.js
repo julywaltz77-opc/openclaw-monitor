@@ -1,5 +1,5 @@
 module.exports = {
-  convexUrl: "https://outstanding-wren-279.convex.cloud",
+  convexUrl: "https://sincere-frog-810.convex.cloud",
   uploadSecret: process.env.OPENCLAW_UPLOAD_SECRET || "671689d22a4b432c41543e3e3c87a6dd",
   uploadInterval: 5 * 60 * 1000, // 5分钟上报一次
   agentPaths: [], // 用户需手动添加Agent路径，例如：["/Users/xxx/openclaw-agent-1", "/Users/xxx/openclaw-agent-2"]

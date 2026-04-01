@@ -1,5 +1,6 @@
 import { ConvexClientProvider } from "./lib/convex";
-import Layout from "./components/Layout";
+import "./globals.css";
+import DashboardLayout from "./components/DashboardLayout";
 
 export const metadata = {
   title: "OpenClaw Monitor",
@@ -11,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="zh-CN">
       <body>
         <ConvexClientProvider>
-          <Layout>{children}</Layout>
+          <DashboardLayout>{children}</DashboardLayout>
         </ConvexClientProvider>
       </body>
     </html>
