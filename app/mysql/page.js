@@ -26,13 +26,16 @@ export default function MysqlPage() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold gradient-text">MySQL 数据快照</h1>
-        <div className="flex items-center space-x-4">
+    <div className="space-y-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="text-4xl font-bold gradient-text">MySQL 数据快照</h1>
+          <p className="text-slate-400 mt-2">实时同步数据库表数据</p>
+        </div>
+        <div className="flex items-center gap-4">
           {tableNames.length > 0 && (
             <select 
-              className="select-input"
+              className="select-input min-w-[160px]"
               value={tableFilter}
               onChange={e => setTableFilter(e.target.value)}
             >
@@ -43,7 +46,7 @@ export default function MysqlPage() {
             </select>
           )}
           {latestUpdate && (
-            <span className="text-sm text-slate-400">
+            <span className="text-sm text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full">
               最后更新：{formatDistanceToNow(new Date(latestUpdate), { addSuffix: true, locale: zhCN })}
             </span>
           )}
