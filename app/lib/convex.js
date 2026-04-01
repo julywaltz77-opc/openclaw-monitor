@@ -1,5 +1,5 @@
 "use client";
-import { ConvexProvider, ConvexReactClient, useQuery, useConvex } from "convex/react";
+import { ConvexProvider, ConvexReactClient, useQuery } from "convex/react";
 import { useEffect, useState } from "react";
 
 // 硬编码后端地址，避免环境变量问题
@@ -9,25 +9,57 @@ export function ConvexClientProvider({ children }) {
   return <ConvexProvider client={convex}>{children}</ConvexProvider>;
 }
 
-// 封装查询函数，支持自动刷新
+// 安全获取api，仅在客户端初始化
+const getApi = () => {
+  if (typeof window === 'undefined') return null;
+  return convex.api;
+};
+
+export const api = getApi();
+
+// 封装查询函数，仅在客户端执行
 export function useAgents(params = {}) {
-  const convex = useConvex();
-  return useQuery(convex.queries.getAgents, params);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
+  return useQuery(api.queries.getAgents, params);
 }
 
 export function useTasks(params = {}) {
-  const convex = useConvex();
-  return useQuery(convex.queries.getTasks, params);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
+  return useQuery(api.queries.getTasks, params);
 }
 
 export function useTaskLogs(params = {}) {
-  const convex = useConvex();
-  return useQuery(convex.queries.getTaskLogs, params);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
+  return useQuery(api.queries.getTaskLogs, params);
 }
 
 export function useMysqlSnapshots(params = {}) {
-  const convex = useConvex();
-  return useQuery(convex.queries.getMysqlSnapshots, params);
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  if (!isClient || !api?.queries) return undefined;
+  return useQuery(api.queries.getMysqlSnapshots, params);
 }
 
 // 自动刷新Hook，默认5分钟刷新一次
